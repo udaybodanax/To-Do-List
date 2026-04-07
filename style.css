@@ -1,0 +1,86 @@
+:root {
+    --bg: #f8fafc;
+    --p: #6366f1;
+    --t: #1e293b;
+    --w: #ffffff
+}
+
+body {
+    background: var(--bg);
+    color: var(--t);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+    margin: 0
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+.todo-app {
+    background: var(--w);
+    width: 100%;
+    max-width: 550px;
+    padding: 40px;
+    border-radius: 32px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, .06)
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-align: center
+}
+
+.progress-container {
+    margin-bottom: 25px;
+    background: #f1f5f9;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--p);
+    transition: .5s ease
+}
+
+.stats-summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: .85rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #64748b
+}
+
+.input-area {
+    margin-bottom: 30px
+}
+
+#todoInput,
+.search-box {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1rem
+}
+
+.search-box {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff
+}
+
+#todoInput:focus,
+.search-box:focus {
+    border-color: var(--p)
+}
