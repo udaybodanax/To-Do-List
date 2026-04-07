@@ -84,3 +84,81 @@ h1 {
 .search-box:focus {
     border-color: var(--p)
 }
+
+#addBtn {
+    width: 100%;
+    background: var(--p);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer
+}
+
+#addBtn:hover {
+    background: #4f46e5
+}
+
+.nav-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px
+}
+
+.nav-btn {
+    background: 0 0;
+    border: 1px solid #e2e8f0;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: .85rem;
+    color: #64748b;
+    cursor: pointer
+}
+
+.nav-btn.active {
+    background: var(--p);
+    color: #fff;
+    border-color: var(--p)
+}
+
+#todoList {
+    list-style: none;
+    margin-bottom: 30px;
+    padding: 0
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    border-left: 5px solid transparent
+}
+
+.high {
+    border-left-color: #f43f5e
+}
+
+.med {
+    border-left-color: #f59e0b
+}
+
+.low {
+    border-left-color: #10b981
+}
+
+.todo-item:hover {
+    background: #f1f5f9
+}
+
+.todo-text {
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center
+}
