@@ -120,3 +120,49 @@ function render () {
 
   updateStats()
 }
+
+function updateStats () {
+  const total = tasks.length
+  const active = tasks.filter(t => !t.done).length
+  const done = total - active
+
+  count.innerText = active
+
+  const p = total === 0 ? 0 : Math.round((done / total) * 100)
+  progress.style.width = p + '%'
+  percent.innerText = p + '%'
+
+  if (p === 100 && total > 0) {
+    percent.style.color = '#10b981'
+    percent.innerText = 'All Done! 🎉'
+  } else {
+    percent.style.color = '#64748b'
+  }
+}
+
+addBtn.onclick = addTask
+
+input.onkeypress = e => {
+  if (e.key === 'Enter') addTask()
+}
+
+clearBtn.onclick = () => {
+  if (confirm('Clear all completed tasks?')) {
+    tasks = tasks.filter(t => !t.done)
+    save()
+  }
+}
+
+navBtns.forEach(btn => {
+  btn.onclick = () => {
+    navBtns.forEach(b => b.classList.remove('active'))
+    btn.classList.add('active')
+    currentFilter = btn.getAttribute('data-f')
+    render()
+  }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  createSearchInput()
+  render()
+})
