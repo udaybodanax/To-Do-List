@@ -53,3 +53,70 @@ function addTask () {
   input.value = ''
   save()
 }
+
+function remove (id) {
+  tasks = tasks.filter(t => t.id !== id)
+  save()
+}
+
+function toggle (id) {
+  tasks = tasks.map(t => {
+    if (t.id === id) return { ...t, done: !t.done }
+    return t
+  })
+  save()
+}
+
+function editTask (id, oldText) {
+  const newText = prompt('Edit your task:', oldText)
+  if (newText === null || newText.trim() === '') return
+
+  tasks = tasks.map(t => {
+    if (t.id === id) return { ...t, text: newText.trim() }
+    return t
+  })
+  save()
+}
+
+function render () {
+  list.innerHTML = ''
+
+  let filtered = tasks.filter(t => t.text.toLowerCase().includes(searchTerm))
+
+  if (currentFilter === 'active') {
+    filtered = filtered.filter(t => !t.done)
+  } else if (currentFilter === 'done') {
+    filtered = filtered.filter(t => t.done)
+  }
+
+  if (filtered.length === 0) {
+    list.innerHTML = `<li class="empty-tasks">No tasks found</li>`
+  }
+
+  filtered.forEach(t => {
+    const li = document.createElement('li')
+    li.className = `todo-item ${t.rank}`
+
+    li.innerHTML = `
+            <div class="todo-text ${
+              t.done ? 'completed' : ''
+            }" onclick="toggle(${t.id})" ondblclick="editTask(${t.id}, '${
+      t.text
+    }')">
+                <span class="task-icon">${t.done ? '✅' : '⭕'}</span>
+                <div>
+                    <div>${t.text}</div>
+                    <small class="task-meta">Added: ${t.created} | Priority: ${
+      t.rank
+    }</small>
+                </div>
+            </div>
+            <button class="del-btn" onclick="remove(${t.id})">
+                <i class="fas fa-trash"></i> ×
+            </button>
+        `
+    list.appendChild(li)
+  })
+
+  updateStats()
+}
